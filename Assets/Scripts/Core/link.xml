@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  IL2CPP 代码裁剪保护。
+  放到 Assets/link.xml（任意位置，文件名必须是 link.xml）。
+
+  为什么需要：IL2CPP 在 Release 构建时会删掉「静态分析认为未被引用」的类型。
+  Logic 层的类型全部由代码直接调用，理论上不会被裁；
+  但 ScriptableObject 子类、反射式配置加载（如果有）属于高风险区，
+  所以直接对两个程序集整体 preserve，代价只是包体略大。
+-->
+<linker>
+  <assembly fullname="DefenseCounter.Logic" preserve="all" />
+  <assembly fullname="DefenseCounter.Core" preserve="all" />
+  <assembly fullname="UnityEngine.CoreModule" preserve="nothing" />
+  <assembly fullname="UnityEngine.UI" preserve="nothing" />
+</linker>
